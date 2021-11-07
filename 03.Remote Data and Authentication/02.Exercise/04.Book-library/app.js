@@ -1,7 +1,7 @@
 const tableEl = document.querySelector('table tbody');
 const loadBooksBtn = document.getElementById('loadBooks');
 const submitBtn = document.querySelector('#newBookForm button');
-const saveBtn = document.querySelector('#editBookForm button')
+const saveBtn = document.querySelector('#editBookForm button');
 const titleNewBookInput = document.querySelector('#newBookForm input[name = "title"]');
 const authorNewBookInput = document.querySelector('#newBookForm input[name = "author"]');
 const titleEditBookInput = document.querySelector('#editBookForm  input[name = "title"]');
@@ -25,7 +25,7 @@ tableEl.addEventListener('click', (ev) => {
     }
 });
 
-async function onSubmit() {   
+async function onSubmit(ev) {   
     ev.preventDefault();
     const title = titleNewBookInput.value;
     const author = authorNewBookInput.value;
@@ -70,6 +70,8 @@ async function onEdit(ev) {
 function onDelete(ev) {
     const id = ev.target.dataset.id;
 
+    deleteData(id);
+    ev.target.parentElement.parentElement.remove;
 }
 
 function onSave(ev) {
@@ -84,7 +86,9 @@ function onSave(ev) {
     }
     
     putData(id, {author, title});
-
+    
+   authorEditBookInput.value = '';
+   titleEditBookInput.value = '';
    onLoad();
 
 }
