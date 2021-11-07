@@ -34,6 +34,64 @@ if(userData !== null) {
 
 }
 
+async function loadData() {
+    try{
+        const catchesSection = document.getElementById('catches');
+        const data = await getData();
+        catchesSection.replaceChildren(...data.map(addCatchEl));
+        
+    } catch(er) {
+        alert(er);
+    }
+}
+
+async function onAdd(ev) {
+    ev.preventDefault(); 
+
+    try{
+        const catchData = new FormData(addForm);
+        const angler = catchData.get('angler');
+        const weight = catchData.get('weight');
+        const species = catchData.get('species');
+        const location = catchData.get('location');
+        const bait = catchData.get('bait');
+        const captureTime = catchData.get('captureTime');
+
+        if(angler == '' ||
+            weight == '' ||
+            species == '' ||
+            location == '' ||
+            bait == '' ||
+            captureTime == '') {
+                throw new Error('Please fill all input fields');
+            }
+
+            if(isNaN(Number(weight))) {
+                throw new Error('Weight must be a number');
+            }
+            
+            if(isNaN(Number(captureTime)) || !Number.isInteger(Number(captureTime))) {
+                throw new Error('Capture Time must be an integer number');
+            }
+
+            const data = {
+                angler,
+                weight,
+                species,
+                location,
+                bait,
+                captureTime
+            }
+
+            await postData(data);
+            addForm.reset();
+
+    } catch(er) {
+        alert(er)
+    }
+
+}
+
 async function onUpdate(ev) {
     try{
         const inputs = ev.target.parentElement.querySelectorAll('input');
@@ -85,132 +143,69 @@ async function onDelete(ev) {
     ev.target.parentElement.remove();   
 }
 
-async function loadData() {
-    try{
-        const catchesSection = document.getElementById('catches');
-        const data = await getData();
-        catchesSection.replaceChildren(...data.map(addCatchEl));
-        
-    } catch(er) {
-        alert(er);
+async function request(url, options) {
+    const res = await fetch(url, options);
+
+    if(res.ok !== true) {
+        const response = await res.json();
+        throw new Error(response.message);
     }
+
+    return res.json();
 }
 
-async function onAdd(ev) {
-    ev.preventDefault(); 
+async function getData() {
+    const url = 'http://localhost:3030/data/catches';
+    const response = await request(url);
 
-    try{
-        const catchData = new FormData(addForm);
-        const angler = catchData.get('angler');
-        const weight = catchData.get('weight');
-        const species = catchData.get('species');
-        const location = catchData.get('location');
-        const bait = catchData.get('bait');
-        const captureTime = catchData.get('captureTime');
-
-        if(angler == '' ||
-            weight == '' ||
-            species == '' ||
-            location == '' ||
-            bait == '' ||
-            captureTime == '') {
-                throw new Error('Please fill all input fields');
-            }
-
-            if(isNaN(Number(weight))) {
-                throw new Error('Weight must be a number');
-            }
-            
-            if(isNaN(Number(captureTime)) || !Number.isInteger(Number(captureTime))) {
-                throw new Error('Capture Time must be an integer number');
-            }
-
-            const data = {
-                angler,
-                weight,
-                species,
-                location,
-                bait,
-                captureTime
-            }
-
-            await post(data);
-            addForm.reset();
-
-    } catch(er) {
-        alert(er)
-    }
-
+    return response;
 }
 
 async function putData(data, id) {
     const url = 'http://localhost:3030/data/catches/' + id;
-    const res = await fetch(url, {
+    const options = {
         method : 'put',
         headers : {
             'Content-Type' : 'application/json',
             'X-Authorization': userData.token
         },
         body : JSON.stringify(data)
-    });
-
-    if(res.ok !== true) {
-        const response = await res.json();
-        throw new Error(response.message);
     }
 
-    return await res.json();
+    const response = await request(url, options);
+    return response;
 }
 
+async function postData(data) {
 
-async function post(data) {
-
-    const res = await fetch('http://localhost:3030/data/catches', {
+    const url = 'http://localhost:3030/data/catches';
+    const options = {
         method : 'post',
         headers : {
             'Content-Type' : 'application/json',
             'X-Authorization': userData.token
         },
         body : JSON.stringify(data)
-    });
+    };
 
-    if(res.ok !== true) {
-        const response = await res.json();
-        throw new Error(response.message);
-    }
-
-    return await res.json();
+    const response = await request(url, options);
+    return response;
 }
 
-async function getData() {
-
-    const res = await fetch('http://localhost:3030/data/catches');
-
-    if(res.ok !== true) {
-        const response = await res.json();
-        throw new Error(response.message);
-    }
-
-    return await res.json();
-}
 
 async function deleteData(id) {
     const url = 'http://localhost:3030/data/catches/' + id;
 
-    const res = await fetch(url, {
+    const options = {
             method : 'delete',
             headers: {
                 'X-Authorization': userData.token
             }
-        }   
-    );
+        };
 
-    if(res.ok !== true) {
-        const response = await res.json();
-        throw new Error(response.message);
-    }
+    const response = await request(url, options);
 
-    return await res.json();
+    return response;
 }
 
 function addCatchEl(data) {
