@@ -1,5 +1,6 @@
 const form = document.querySelector('form');
 document.getElementById('logout').style.display = 'none';
+document.getElementById('login').style.display = 'none';
 
 form.addEventListener('submit', onSubmit);
 
