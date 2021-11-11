@@ -31,7 +31,6 @@ async function onRegistration(ev) {
         const response = await register();
         accessToken = response.accessToken;
         userId = response._id;
-        form.reset();
 
         const userData = {
             email,
@@ -40,7 +39,8 @@ async function onRegistration(ev) {
         }
     
         localStorage.setItem('userData', JSON.stringify(userData));
-        
+
+        form.reset();
         showHomepage();
 
     } catch(er) {

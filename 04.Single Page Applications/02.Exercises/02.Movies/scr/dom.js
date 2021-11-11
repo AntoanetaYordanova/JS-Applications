@@ -35,10 +35,6 @@ export function e(type, attribute, className, ...content) {
    return el;
 }
 
-export function removeElements(...elements){
-    elements.forEach(e.remove());
-}
-
 export function refreshNav() {
     const userData = JSON.parse(localStorage.getItem('userData'));
     const loginLink = document.getElementById('loginLink');
