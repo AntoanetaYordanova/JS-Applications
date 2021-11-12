@@ -3,8 +3,11 @@ import { showHomePage } from "./homePage.js";
 const signUpSection = document.getElementById('form-sign-up');
 const main = document.getElementById('main');
 const form = signUpSection.querySelector('form');
+const greetingSection = document.getElementById('greeting');
+
 
 export function showSignUpSection() {
+    greetingSection.style.display = 'none';
     main.replaceChildren(signUpSection);
 }
 

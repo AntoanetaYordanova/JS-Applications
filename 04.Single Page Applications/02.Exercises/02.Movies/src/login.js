@@ -3,8 +3,10 @@ import { showHomePage } from "./homePage.js";
 const loginSection = document.getElementById('form-login');
 const main = document.getElementById('main');
 const form = loginSection.querySelector('form');
+const greetingSection = document.getElementById('greeting');
 
 export function showLoginSection() {
+    greetingSection.style.display = 'none';
     main.replaceChildren(loginSection);
 }
 

@@ -1,3 +1,5 @@
+import { showHomePage } from "./homePage.js";
+
 const editMovieSection = document.getElementById('edit-movie');
 const main = document.getElementById('main');
 const form  = editMovieSection.querySelector('form');
@@ -34,7 +36,12 @@ async function onSubmit(ev){
     movieData.img = img;
    }
 
-   await updateMovie();
+   try {
+    await updateMovie();
+    showHomePage();
+   } catch (er) {
+       alert(er)
+   }
 }
 
 async function updateMovie() {

@@ -63,7 +63,7 @@ export function getTopicData(ev) {
 
 export async function showComments(id) {
   const mainViewSection = document.getElementById('mainView');
-    const topicInfoSection = postCommentsSection.querySelector('#postCommentsSection .theme-content');0
+    const topicInfoSection = postCommentsSection.querySelector('#postCommentsSection .theme-content');
     
     document.querySelector('#postCommentsSection form').addEventListener('submit', (ev) => {
         const commentData = getCommentInfo(ev);
@@ -85,7 +85,7 @@ export async function showComments(id) {
       <p class="post-content">${data.postText}</p>
   </div>
 `;
-  topicInfoSection.appendChild(div);
+  topicInfoSection.replaceChildren(div);
 
   loadComments(id);
 }

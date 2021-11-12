@@ -6,12 +6,14 @@ const homePageSection = document.getElementById('home-page');
 const main = document.getElementById('main');
 const moviesSection = document.querySelector('#movie .card-deck');
 const addMovieBtn = document.querySelector('#add-movie-button a');
+const greetingSection = document.getElementById('greeting');
 
 export async function showHomePage() {
+    greetingSection.style.display = '';
     const loadingEl = document.createElement('p');
     loadingEl.textContent = 'Loading...';
-    main.replaceChildren(homePageSection);
     moviesSection.replaceChildren(loadingEl);
+    main.replaceChildren(homePageSection);
     resetNav();
 
     try {

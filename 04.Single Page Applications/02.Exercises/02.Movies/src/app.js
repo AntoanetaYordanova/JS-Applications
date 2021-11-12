@@ -26,7 +26,8 @@ document.querySelector('nav').addEventListener('click', ev => {
 
 function logOut() {
     localStorage.clear();
-    showHomePage();
+    resetNav()
+    showLoginSection();
 }
 
 export function resetNav() {
@@ -41,12 +42,16 @@ export function resetNav() {
         loginLink.style.display = '';
         registerLink.style.display = '';
         logoutBtn.style.display = 'none';
-        addMovieBtn.style.display = 'none';
+        if(addMovieBtn !== null) {
+            addMovieBtn.style.display = 'none';
+        }
     } else {
         document.getElementById('greeting').textContent = `Welcome, ${userData.email}`;
         loginLink.style.display = 'none';
         registerLink.style.display = 'none';
         logoutBtn.style.display = '';
-        addMovieBtn.style.display = '';
+        if(addMovieBtn !== null) {
+            addMovieBtn.style.display = '';
+        }
     }
 }
