@@ -11,28 +11,31 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <script src="./scr/app.js" type="module"></script>
   </head>
 
   <body>
     <div class="container" id="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand text-light" href="#">Movies</a>
+        <a class="navbar-brand text-light" href="#" id="homePageLink">Movies</a>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link">Welcome, email</a>
+            <a class="nav-link" id="greeting">Welcome, email</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="#" id="logoutBtn">Logout</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="#" id="loginLink">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+            <a class="nav-link" href="#" id="registerLink">Register</a>
           </li>
         </ul>
       </nav>
 
+      <main>
+      </main>
       <section id="home-page">
         <div
           class="jumbotron jumbotron-fluid text-light"
@@ -56,65 +59,71 @@
         <section id="add-movie-button">
           <a href="#" class="btn btn-warning">Add Movie</a>
         </section>
-      </section>
 
-      <section id="movie">
-        <div class="mt-3">
-          <div class="row d-flex d-wrap">
-            <div class="card-deck d-flex justify-content-center">
-              <div class="card mb-4">
-                <img
-                  class="card-img-top"
-                  src="https://pbs.twimg.com/media/ETINgKwWAAAyA4r.jpg"
-                  alt="Card image cap"
-                  width="400"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">Wonder Woman 1984</h4>
+        <section id="movie">
+          <div class="mt-3">
+            <div class="row d-flex d-wrap">
+              <div class="card-deck d-flex justify-content-center">
+                <div class="card mb-4">
+                  <img
+                    class="card-img-top"
+                    src="https://pbs.twimg.com/media/ETINgKwWAAAyA4r.jpg"
+                    alt="Card image cap"
+                    width="400"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">Wonder Woman 1984</h4>
+                  </div>
+                  <div class="card-footer">
+                    <a href="#/details/6lOxMFSMkML09wux6sAF">
+                      <button type="button" class="btn btn-info">
+                        Details
+                      </button>
+                    </a>
+                  </div>
                 </div>
-                <div class="card-footer">
-                  <a href="#/details/6lOxMFSMkML09wux6sAF">
-                    <button type="button" class="btn btn-info">Details</button>
-                  </a>
-                </div>
-              </div>
 
-              <div class="card mb-4">
-                <img
-                  class="card-img-top"
-                  src="https://i.pinimg.com/originals/f2/a4/58/f2a458048757bc6914d559c9e4dc962a.jpg"
-                  alt="Card image cap"
-                  width="400"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">Top Gun 2</h4>
+                <div class="card mb-4">
+                  <img
+                    class="card-img-top"
+                    src="https://i.pinimg.com/originals/f2/a4/58/f2a458048757bc6914d559c9e4dc962a.jpg"
+                    alt="Card image cap"
+                    width="400"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">Top Gun 2</h4>
+                  </div>
+                  <div class="card-footer">
+                    <a href="#/details/CUtL9j4qI0XVhn9kTUsx">
+                      <button type="button" class="btn btn-info">
+                        Details
+                      </button>
+                    </a>
+                  </div>
                 </div>
-                <div class="card-footer">
-                  <a href="#/details/CUtL9j4qI0XVhn9kTUsx">
-                    <button type="button" class="btn btn-info">Details</button>
-                  </a>
-                </div>
-              </div>
 
-              <div class="card mb-4">
-                <img
-                  class="card-img-top"
-                  src="https://miro.medium.com/max/735/1*akkAa2CcbKqHsvqVusF3-w.jpeg"
-                  alt="Card image cap"
-                  width="400"
-                />
-                <div class="card-body">
-                  <h4 class="card-title">Black Widow</h4>
-                </div>
-                <div class="card-footer">
-                  <a href="#/details/krPgQD6SWf39bM4x00co">
-                    <button type="button" class="btn btn-info">Details</button>
-                  </a>
+                <div class="card mb-4">
+                  <img
+                    class="card-img-top"
+                    src="https://miro.medium.com/max/735/1*akkAa2CcbKqHsvqVusF3-w.jpeg"
+                    alt="Card image cap"
+                    width="400"
+                  />
+                  <div class="card-body">
+                    <h4 class="card-title">Black Widow</h4>
+                  </div>
+                  <div class="card-footer">
+                    <a href="#/details/krPgQD6SWf39bM4x00co">
+                      <button type="button" class="btn btn-info">
+                        Details
+                      </button>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
 
       <section id="add-movie">
@@ -171,10 +180,10 @@
                 her ledger when a dangerous conspiracy with ties to her past
                 arises. Comes on the screens 2020.
               </p>
-              <a class="btn btn-danger" href="#">Delete</a>
-              <a class="btn btn-warning" href="#">Edit</a>
-              <a class="btn btn-primary" href="#">Like</a>
-              <span class="enrolled-span">Liked 1</span>
+              <a class="btn btn-danger" href="#" id="deleteBtn">Delete</a>
+              <a class="btn btn-warning" href="#" id="editBtn">Edit</a>
+              <a class="btn btn-primary" href="#" id="likeBtn">Like</a>
+              <span class="enrolled-span" id="likesSection">Liked 1</span>
             </div>
           </div>
         </div>
