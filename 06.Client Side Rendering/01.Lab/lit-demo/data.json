@@ -1,0 +1,17 @@
+[
+    {
+        "title" : "First Article",
+        "content" : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum quia vel delectus sunt! Assumenda atque porro, saepe nemo sint, consequuntur officia a voluptatem dolore beatae quasi. Asperiores quibusdam voluptatum itaque?",
+        "author" : "John Smith"
+    },
+    {
+        "title" : "Second Article",
+        "content" : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum quia vel delectus sunt! Assumenda atque porro, saepe nemo sint, consequuntur officia a voluptatem dolore beatae quasi. Asperiores quibusdam voluptatum itaque?",
+        "author" : "Peter Johnson"
+    },
+    {
+        "title" : "Third Article",
+        "content" : "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum quia vel delectus sunt! Assumenda atque porro, saepe nemo sint, consequuntur officia a voluptatem dolore beatae quasi. Asperiores quibusdam voluptatum itaque?",
+        "author" : "Marie Curie"
+    }
+]

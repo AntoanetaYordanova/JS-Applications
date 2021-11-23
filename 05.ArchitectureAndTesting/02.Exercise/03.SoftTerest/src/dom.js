@@ -1,7 +1,7 @@
 const main = document.getElementById('main');
 
 export function showSection(section) {
-    MediaDeviceInfo.replaceChildren()
+    main.replaceChildren(section)
 }
 
 export function e(type, attribute, ...content) {
