@@ -1,8 +1,13 @@
-import { e } from "../dom.js";
-
 const section = document.getElementById('home');
 section.remove();
+section.querySelector('#getStartedLink').addEventListener('click', (ev) => {
+    ev.preventDefault();
+    ctx.goTo('catalog');
+});
 
-export async function showHomePage(ctx) {
+let ctx;
+
+export async function showHomePage(ctxTarget) {
+    ctx = ctxTarget;
     ctx.showSection(section);
 }

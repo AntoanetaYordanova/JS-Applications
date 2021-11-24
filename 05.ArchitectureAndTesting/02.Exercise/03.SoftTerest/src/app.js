@@ -6,6 +6,7 @@ import { showDashboardPage } from './views/dashboard.js';
 import { showDetailsPage } from "./views/details.js";
 import { showSection } from "./dom.js";
 
+
 const links = {
     getStartedLink : 'home',
     homeLink : 'home',
@@ -26,7 +27,8 @@ const views = {
 
 const ctx = {
     goTo,
-    showSection
+    showSection,
+    updateNav
 }
 
 const nav = document.querySelector('nav');
@@ -48,3 +50,18 @@ function goTo(name, ...params) {
         view(ctx, ...params);
     }
 }
+
+function updateNav() {
+    const userData = JSON.parse(sessionStorage.getItem('userData'));
+
+    if(userData != null) {
+        [...document.querySelectorAll('.user')].forEach(l => l.style.display = 'block');
+        [...document.querySelectorAll('.guest')].forEach(l => l.style.display = 'none');
+    } else {
+        [...document.querySelectorAll('.user')].forEach(l => l.style.display = 'none');
+        [...document.querySelectorAll('.guest')].forEach(l => l.style.display = 'block');
+    }
+} 
+
+updateNav();
+goTo('home');

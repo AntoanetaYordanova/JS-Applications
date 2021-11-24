@@ -12,7 +12,7 @@ export function e(type, attribute, ...content) {
         if(attribute.substring(0 ,2) == 'on'){
             el.addEventListener(attribute.substring(2).toLowercase(), value);
         } else {
-            result[attribute] = value;
+            el[attribute] = value;
         }
     }
 
