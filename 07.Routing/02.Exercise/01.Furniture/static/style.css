@@ -211,3 +211,12 @@ img {
 .is-invalid {
     border-left: 2px solid red;
 }
+
+#user, #static {
+    display: none;
+}
+
+div.error{
+    color: rgb(219, 40, 40);
+    font-size: 125%;
+}

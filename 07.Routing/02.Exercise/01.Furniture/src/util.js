@@ -9,3 +9,7 @@ export function setUserData(data) {
 export function clearUserData() {
     sessionStorage.removeItem('userData');
 }
+
+export function isUserLogged() {
+    return  getUserData() != null ? true : false;
+}

@@ -6,7 +6,7 @@ async function request(url, options) {
 
         if(response.ok != true) {
             if(response.status == 403) {
-                localStorage.clear();
+                sessionStorage.clear();
             }
             
             const error = await response.json();
@@ -66,7 +66,7 @@ export async function login(password, email) {
 
     sessionStorage.setItem('userData', JSON.stringify({
         email : data.email,
-        token : data.acessToken,
+        token : data.accessToken,
         id : data._id
     }));
 }
@@ -76,7 +76,7 @@ export async function register(password, email) {
 
     sessionStorage.setItem('userData', JSON.stringify({
         email,
-        token : data.acessToken,
+        token : data.accessToken,
         id : data._id
     }));
 }
