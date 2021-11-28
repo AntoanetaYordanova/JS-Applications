@@ -10,8 +10,8 @@ const registerTemplate = (onRegister, errorMsg, errors) => {
 </div>
 <form @submit=${onRegister}>
   <div class="row space-top">
+    ${errorMsg ? html`<div class="form-group error">${errorMsg}</div>` : ''}
       <div class="col-md-4">
-        ${errorMsg ? html`<div class="form-group error">${errorMsg}</div>` : ''}
           <div class="form-group">
               <label class="form-control-label" for="email">Email</label>
               <input class=${'form-control ' + (errors.email ? 'is-invalid' : '')} id="email" type="text" name="email">

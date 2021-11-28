@@ -14,7 +14,7 @@ document.getElementById('logoutBtn').addEventListener('click', onLogOut);
 page(decorateContext);
 page('/', catalogPage);
 page('/create', createPage);
-page('/edit', editPage);
+page('/edit/:id', editPage);
 page('/details/:id', detailsPage);
 page('/login', loginPage);
 page('/register', registerPage);
@@ -37,7 +37,6 @@ async function onLogOut() {
 
 function updateUserNav() {
     if(isUserLogged()) {
-        console.log('logged');
        document.getElementById('user').style.display = 'inline-block';
        document.getElementById('guest').style.display = 'none';
     } else {
