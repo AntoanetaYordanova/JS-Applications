@@ -27,7 +27,6 @@ page('/catalog', catalogPage);
 page('/edit/:id', editPage);
 page('/details/:id', detailsPage);
 page('/search', searchPage);
-page('/search/result/:album', searchResultPage);
 
 page.start();
 
