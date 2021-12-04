@@ -34,6 +34,6 @@ export async function getUserCarListing(userId){
 }
 
 export async function getCarsByYear(year){
-    return api.get(`/data/cars?where=year%3D${year}`);
+    return api.get('/data/cars?where=year%3D' + year);
 }
 

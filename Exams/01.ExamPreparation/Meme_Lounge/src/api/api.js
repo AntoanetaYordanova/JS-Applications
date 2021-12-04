@@ -1,4 +1,3 @@
-import { notify } from "../notify.js";
 import { clearUserData, getUserData, setUserData } from "../util.js";
 
 const host = 'http://localhost:3030';
@@ -27,8 +26,7 @@ async function request(url, options) {
         }
 
     } catch (err) {
-        // alert(err.message);
-        notify(err.message);   
+        alert(err.message);
         throw err;
     }
 }
@@ -69,33 +67,33 @@ export async function del(url) {
     return request(url, createOptions('delete'));
 }
 
-export async function login(password, email) {
-    const data = await request('/users/login', createOptions('post', {password, email}));
+export async function login(email, password) {
+    const data = await request('/users/login', createOptions('post', {email, password}));
 
     setUserData({
         username : data.username,
         email : data.email,
         token : data.accessToken,
-        id : data._id,
-        gender : data.gender
+        gender : data.gender,
+        id : data._id
     })
    
 }
 
-export async function register(username, password, email, gender) {
-    const data = await request('/users/register', createOptions('post', {username, password, email, gender}));
+export async function register(username, email, password, gender) {
+    const data = await request('/users/register', createOptions('post', {username,email, password,gender}));
 
     setUserData({
         username : data.username,
         email : data.email,
         token : data.accessToken,
-        id : data._id,
-        gender : data.gender
+        gender : data.gender,
+        id : data._id
     });
 }
 
 export async function logout() {
-    await request('/users/logout', createOptions());
+    await get('/users/logout');
 
     clearUserData();
 }

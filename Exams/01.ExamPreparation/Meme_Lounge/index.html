@@ -5,32 +5,21 @@
     <meta charset="UTF-8">
     <title>Meme Lounge</title>
     <link rel="stylesheet" href="/style/styles.css">
-    <script type="module" src="/src/app.js"></script>
+    <script src="/src/app.js" type="module"></script>
 </head>
 
 <body>
     <div id="container">
-
-        <!-- Notifications -->
-        <section id="notifications">
-            <div id="errorBox" class="notification">
-                <span>MESSAGE</span>
-            </div>
-        </section>
-
-        <!-- Navigation -->
         <nav>
-            <a href="/memes">All Memes</a>
-             <!-- Logged users -->
+            <a href="/all-memes">All Memes</a>
             <div class="user">
-                <a href="/create">Create Meme</a>
+                <a href="/create-meme">Create Meme</a>
                 <div class="profile">
-                    <span id="emailGreeting">Welcome, {email}</span>
-                    <a href="/myProfile">My Profile</a>
-                    <a href="#" id="logoutBtn">Logout</a>
+                    <span id="userGreeting"></span>
+                    <a href="/my-profile">My Profile</a>
+                    <a href="javascript:void(0)" id="logoutBtn">Logout</a>
                 </div>
             </div>
-            <!-- Guest users -->
             <div class="guest">
                 <div class="profile">
                     <a href="/login">Login</a>
@@ -40,33 +29,9 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
         <main>
         </main>
 
-        <!-- Welcome Page ( Only for guest users ) -->
-       
-
-        <!-- Login Page ( Only for guest users ) -->
-   
-
-        <!-- Register Page ( Only for guest users ) -->
-        
-
-        <!-- All Memes Page ( for Guests and Users )-->
-        
-
-        <!-- Create Meme Page ( Only for logged users ) -->
-
-
-        <!-- Edit Meme Page ( Only for logged user and creator to this meme )-->
-
-        <!-- Details Meme Page (for guests and logged users) -->
- 
-
-        <!-- Profile Page ( Only for logged users ) -->
-        
-        <!-- Footer  -->
         <footer class="footer">
             <p>Created by SoftUni Delivery Team</p>
         </footer>

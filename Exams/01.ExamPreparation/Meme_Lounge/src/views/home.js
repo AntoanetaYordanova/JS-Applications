@@ -1,7 +1,7 @@
-import { html } from "../lib.js";
-import { getUserData } from "../util.js";
+import { html } from '../lib.js';
+import { getUserData } from '../util.js';
 
-const homeTemplate = () => html`<section id="welcome">
+const template = () => html`<section id="welcome">
 <div id="welcome-container">
     <h1>Welcome To Meme Lounge</h1>
     <img src="/images/welcome-meme.jpg" alt="meme">
@@ -11,11 +11,13 @@ const homeTemplate = () => html`<section id="welcome">
         <a href="/register" class="button">Register</a>
     </div>
 </div>
-</section>`
+</section>`;
 
 export function homePage(ctx) {
-    if(getUserData() !== null) {
-        return ctx.page.redirect('/memes');
+    const userData = getUserData();
+
+    if(userData != null) {
+        ctx.page.redirect('/all-memes');
     }
-    ctx.render(homeTemplate());
+    ctx.render(template());
 }

@@ -1,10 +1,7 @@
-import { login, register } from "../api/data.js";
-import { html } from "../lib.js";
-import { notify } from "../notify.js";
+import { register } from '../api/data.js';
+import { html } from '../lib.js';
 
-window.notify = notify;
-
-const registerTemplate = (onSubmit) => html`<section id="register">
+const template = (onSubmit) => html`       <section id="register">
 <form id="register-form" @submit=${onSubmit}>
     <div class="container">
         <h1>Register</h1>
@@ -28,35 +25,32 @@ const registerTemplate = (onSubmit) => html`<section id="register">
         </div>
     </div>
 </form>
-</section>`
+</section>`;
 
 export function registerPage(ctx) {
-    ctx.render(registerTemplate(onSubmit));
+    ctx.render(template(onSubmit));
 
     async function onSubmit(ev) {
         ev.preventDefault();
 
         const formData = new FormData(ev.target);
+
         const email = formData.get('email');
         const username = formData.get('username');
         const password = formData.get('password');
         const rePass = formData.get('repeatPass');
         const gender = formData.get('gender');
 
-        if(email == '' || password == '' || rePass == '' || username == ''){
-            // alert('All fields are required');
-            notify('All fields are required');
-            return;
+        if(email == '' || username == '' || password == '') {
+            return alert('All fields are required!');
         }
 
         if(password != rePass) {
-            // alert('Passwords don\'t match');
-            notify('Passwords don\'t match');
-            return;
+            return alert('Passwords don\'t match!');
         }
 
-        await register(username, password, email, gender);
+        await register(username, email, password, gender);
         ctx.updateNav();
-        ctx.page.redirect('/memes');
+        ctx.page.redirect('/all-memes');
     }
 }

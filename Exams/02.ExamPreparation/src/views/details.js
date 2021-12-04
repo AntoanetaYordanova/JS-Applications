@@ -43,14 +43,12 @@ export async function detailsPage(ctx) {
         isLiked = false;
     }
 
-    console.log(isLiked);
-
     const isOwner = userData && userData.id == bookData._ownerId;
     ctx.render(detailsTemplate(bookData, isOwner, userData != null, onDelete, likes, onLike, isLiked));
 
-    function onLike(ev) {
+    async function onLike(ev) {
         ev.preventDefault();
-        sendLike();
+        await sendLike(bookData._id);
         updateLikesSpan();
         ev.target.style.display = 'none';
     }

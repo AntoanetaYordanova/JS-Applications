@@ -1,53 +1,53 @@
-import { render, page } from './lib.js';
+import { logout } from './api/data.js';
+import {page, render} from './lib.js';
+import { getUserData } from './util.js';
+import { catalogPage } from './views/allMemes.js';
+import { createMemePage } from './views/create.js';
 import { homePage } from './views/home.js';
-import { catalogPage } from './views/catalog.js';
 import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
-import { getUserData } from './util.js';
-import { logout } from './api/data.js';
-import { createPage } from './views/create.js';
-import { detailsPage } from './views/details.js';
 import { editPage } from './views/edit.js';
+import { detailsPage } from './views/details.js';
 import { userProfilePage } from './views/userProfile.js';
 
-
-const root = document.querySelector('main'); 
-document.getElementById('logoutBtn').addEventListener('click', onLogout);
+const root = document.querySelector('main');
 updateNav();
 
-page(decorateCtx);
+page(decorateContext);
+
 page('/', homePage);
-page('/memes', catalogPage);
 page('/login', loginPage);
 page('/register', registerPage);
-page('/create', createPage);
-page('/details/:id', detailsPage);
+page('/all-memes', catalogPage);
+page('/create-meme', createMemePage);
 page('/edit/:id', editPage);
-page('/myProfile', userProfilePage);
+page('/details/:id', detailsPage);
+page('/my-profile', userProfilePage);
 
 page.start();
 
-function decorateCtx(ctx, next) {
-    ctx.render = (content) => render(content, root);
+function decorateContext(ctx, next) {
+    ctx.render = (content) => render(content, root); 
     ctx.updateNav = updateNav;
+
     next();
 }
 
-function updateNav() {
-    const userData = getUserData();
+async function updateNav() {
+    const userData = await getUserData();
 
-    if(userData !== null) {
-        document.getElementById('emailGreeting').textContent = `Welcome, ${userData.email}`;
-        document.querySelector('nav div.user').style.display = 'block';
-        document.querySelector('nav div.guest').style.display = 'none';
+    if(userData != null) {
+        document.getElementById('userGreeting').textContent = `Welcome, ${userData.email}`
+        document.querySelector('.user').style.display = 'block';
+        document.querySelector('.guest').style.display = 'none';
     } else {
-        document.querySelector('nav div.user').style.display = 'none';
-        document.querySelector('nav div.guest').style.display = 'block';
+        document.querySelector('.user').style.display = 'none';
+        document.querySelector('.guest').style.display = 'block';
     }
 }
 
-async function onLogout() {
-    logout();
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await logout();
     updateNav();
     page.redirect('/');
-}
+});

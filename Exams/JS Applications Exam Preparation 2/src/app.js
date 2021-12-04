@@ -10,6 +10,7 @@ import { loginPage } from './views/login.js';
 import { myListingsPage } from './views/myListings.js';
 import { registerPage } from './views/register.js';
 import { searchPage } from './views/search.js';
+import { searchResponsePage } from './views/searchResponse.js';
 
 const root = document.getElementById('site-content');
 updateNav();
@@ -24,6 +25,8 @@ page('/my-listings', myListingsPage);
 page('/create', createListingPage);
 page('/edit/:id', editListingPage);
 page('/details/:id', detailsPage);
+page('/search/:year', searchResponsePage);
+
 
 page.start();
 

@@ -1,46 +1,48 @@
-import { editMeme, getMemeById } from "../api/data.js";
-import { html } from "../lib.js";
-import { notify } from "../notify.js";
+import { editMeme, getMemeDetails } from '../api/data.js';
+import { html } from '../lib.js';
 
-
-const editTemplate = (onSubmit, data) => html`<section id="create-meme">
-<section id="edit-meme">
-            <form id="edit-form" @submit=${onSubmit}>
-                <h1>Edit Meme</h1>
-                <div class="container">
-                    <label for="title">Title</label>
-                    <input id="title" type="text" placeholder="Enter Title" name="title" .value=${data.title}>
-                    <label for="description">Description</label>
-                    <textarea id="description" placeholder="Enter Description" name="description">
-                            ${data.description}
-                        </textarea>
-                    <label for="imageUrl">Image Url</label>
-                    <input id="imageUrl" type="text" placeholder="Enter Meme ImageUrl" name="imageUrl" .value=${data.imageUrl}>
-                    <input type="submit" class="registerbtn button" value="Edit Meme">
-                </div>
-            </form>
-        </section>`
+const template = (meme, onSubmit) => html`<section id="edit-meme">
+<form id="edit-form" @submit=${onSubmit}>
+    <h1>Edit Meme</h1>
+    <div class="container">
+        <label for="title">Title</label>
+        <input id="title" type="text" placeholder="Enter Title" name="title" .value=${meme.title}>
+        <label for="description">Description</label>
+        <textarea id="description" placeholder="Enter Description" name="description">
+                ${meme.description}
+            </textarea>
+        <label for="imageUrl">Image Url</label>
+        <input id="imageUrl" type="text" placeholder="Enter Meme ImageUrl" name="imageUrl" .value=${meme.imageUrl}>
+        <input type="submit" class="registerbtn button" value="Edit Meme">
+    </div>
+</form>
+</section>`;
 
 export async function editPage(ctx) {
-    const memeData = await getMemeById(ctx.params.id);
-
-    ctx.render(editTemplate(onSubmit, memeData));
+    const memeId = ctx.params.id;
+    const memeData = await getMemeDetails(memeId);
+    ctx.render(template(memeData, onSubmit));
 
     async function onSubmit(ev) {
         ev.preventDefault();
+        
+       const formData = new FormData(ev.target);
 
-        const formData = new FormData(ev.target);
-        const title = formData.get('title');
-        const description = formData.get('description');
-        const imageUrl = formData.get('imageUrl');
+       const title = formData.get('title');
+       const description = formData.get('description');
+       const imageUrl = formData.get('imageUrl');
 
-        if(title == '' || description == '' || imageUrl == '') {
-            // return alert('All fields are required!');
-            notify('All fields are required!');
-        }
+       if(title == '' || description == '' || imageUrl == '') {
+           return alert('All fields are required!');
+       }
 
-        await editMeme(memeData._id, {title, description, imageUrl});
+       const newData = {
+           title, 
+           description,
+           imageUrl
+       }
 
-        ctx.page.redirect('/memes');
+       await editMeme(memeId, newData);
+       ctx.page.redirect('/details/' + memeId);
     }
 }
